@@ -1,0 +1,22 @@
+package-and-deploy:
+  needs: build-and-test
+  runs-on: ubuntu-latest
+  permissions:
+      contents: read
+      actions: write
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Install zip utility
+        run: sudo apt-get update && sudo apt-get install -y zip
+
+      - name: Create a deployable ZIP archive
+        run: zip -r workflow_script_package.zip scripts/
+
+      - name: Upload ZIP file as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: script-artifact
+          path: workflow_script_package.zip
