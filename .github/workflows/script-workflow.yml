@@ -26,5 +26,17 @@ jobs:
       - name: Show test message
         run: echo "Running simple test assertion..."
 
-      - name: Executr Test Script
+      - name: Execute Test Script
         run: ./scripts/my-script.sh
+
+      - name: Install ShellCheck (Linter)
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck on the Script
+        run: shellcheck scripts/my-script.sh
+
+      - name: Install Flawfiner (SAST Tool)
+        run: sudo apt-get install -y flawfinder
+
+      - name: Run Flawfinder security scan on script
+        run: flawfinder scripts/my-script.sh
