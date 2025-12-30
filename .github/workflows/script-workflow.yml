@@ -1,0 +1,30 @@
+name: Script Workflow (Lint, Security, Test. Env)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs_ons: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    env:
+      REQUIRED_VAR: "workflow_value"
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Ensure script is executable
+        run: chmod +x scripts/my-script.sh
+
+      - name: Show test message
+        run: echo "Running simple test assertion..."
+
+      - name: Executr Test Script
+        run: ./scripts/my-script.sh
