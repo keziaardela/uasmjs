@@ -1,6 +1,17 @@
-package-and-deploy:
-  needs: build-and-test
-  runs-on: ubuntu-latest
+name: Package and Deploy
+
+
+on:
+  workflow_run:
+    workflows:
+      - Script Workflow (Lint, Security, Test, Env)
+    types:
+      - completed
+
+jobs:
+  package-and-deploy:
+    runs-on: ubuntu-latest
+
   permissions:
       contents: read
       actions: write
