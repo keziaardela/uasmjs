@@ -2,11 +2,9 @@ name: Package and Deploy
 
 
 on:
-  workflow_run:
-    workflows:
-      - Script Workflow (Lint, Security, Test, Env)
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   package-and-deploy:
