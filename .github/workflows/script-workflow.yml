@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    runs_ons: ubuntu-latest
+    runs-ons: ubuntu-latest
     permissions:
       contents: read
       security-events: write
